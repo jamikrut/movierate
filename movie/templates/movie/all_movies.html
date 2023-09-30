@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movies</title>
-</head>
-<body>
-<table>
-    <thead>
-    <tr>
-        <th>Tytuł</th>
-        <th>Reżyser</th>
-        <th>Opis</th>
-        <th>Data Wydania</th>
-        <th>Liczba głosów</th>
-        <th>Średnia ocena</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for movie in movies %}
-        <tr>
-            <td>{{ movie.title }}</td>
-            <td>{{ movie.director }}</td>
-            <td>{{ movie.overview }}</td>
-            <td>{{ movie.release_date }}</td>
-            <td>{{ movie.vote_count }}</td>
-            <td>{{ movie.vote_average|floatformat:1 }}</td>
-            <td>
-                <a href="{% url 'movie_details' tmdb_id=movie.tmdb_id %}">Szczegóły</a>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block page_title %}
+    Movies
+{% endblock %}
+
+{% block page_content %}
+
+    <table>
+        <thead>
+        <tr>
+            <th>Tytuł</th>
+            <th>Reżyser</th>
+            <th>Opis</th>
+            <th>Data Wydania</th>
+            <th>Liczba głosów</th>
+            <th>Średnia ocena</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for movie in movies %}
+            <tr>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.director }}</td>
+                <td>{{ movie.overview }}</td>
+                <td>{{ movie.release_date }}</td>
+                <td>{{ movie.vote_count }}</td>
+                <td>{{ movie.vote_average|floatformat:1 }}</td>
+                <td>
+                    <a href="{% url 'movie_details' tmdb_id=movie.tmdb_id %}">Szczegóły</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
