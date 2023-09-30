@@ -25,6 +25,9 @@
             <td>{{ movie.release_date }}</td>
             <td>{{ movie.vote_count }}</td>
             <td>{{ movie.vote_average|floatformat:1 }}</td>
+            <td>
+                <a href="{% url 'movie_details' tmdb_id=movie.tmdb_id %}">Szczegóły</a>
+            </td>
         </tr>
     {% endfor %}
     </tbody>

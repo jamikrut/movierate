@@ -35,3 +35,12 @@ class Movie:
                                         row[11], row[12], row[13], row[14], row[15], row[16], row[17], ))
 
         return movies_arr
+
+    @staticmethod
+    def get_movie_by_tmdb_id(tmdb_id):
+        all_movies = Movie.get_all()
+        for movie in all_movies:
+            if movie.tmdb_id == tmdb_id:
+                return movie
+
+        return None

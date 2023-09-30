@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie details</title>
+</head>
+<body>
+
+<h1>{{ movie.title }}</h1>
+{{ movie.director }}
+{{ movie.overview }}
+{{ movie.release_date }}
+{{ movie.vote_count }}
+{{ movie.vote_average|floatformat:1 }}
+
+</body>
+</html>
