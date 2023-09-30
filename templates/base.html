@@ -1,10 +1,35 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block page_title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/uikit.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base_movie_styles.css' %}">
+
+    <script src="{% static 'js/uikit.min.js' %}"></script>
+    <script src="{% static 'js/uikit-icons.min.js' %}"></script>
+
+
 </head>
-<body style="background-color: aqua">
-{% block page_content %}{% endblock %}
+<body>
+<div uk-height-viewport="offset-bottom: 0" class="uk-flex" uk-flex>
+    <div class="uk-width-small movie-nav">
+        <div class="uk-padding-small uk-flex uk-flex-column" style="gap: 15px">
+            <div>
+                <a class="uk-button uk-button-default uk-bord` uk-width-1-1" style="color: white">
+                    <span class="uk-icon" style="color: white" uk-icon="video-camera"></span>
+                    <div>Filmy</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-expand">
+        {% block page_content %}{% endblock %}
+    </div>
+</div>
+
 </body>
 </html>
