@@ -1,18 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 from . import models
 
 
-def all_movies(request):
-    movies = models.Movie.get_all()
-    return render(request, 'movie/all_movies.html', {
-        'movies': movies
+def selected_movie(request, title):
+    movie = models.Movie.objects.get(title)[:20]
+    return render(request, 'movie/', {
+        'movies': movie
     })
 
 
-def movie_details(request, tmdb_id):
-    found_movie = models.Movie.get_movie_by_tmdb_id(tmdb_id)
+def all_movies(request):
+    title = request.GET.get('title')
+    if title:
+        movies = models.Movie.objects.filter(title__contains=title)[:20]
+    else:
+        movies = models.Movie.objects.all()[:20]
+
+    return render(request, 'movie/all_movies.html', {
+        'movies': movies,
+        'title': title,
+    })
+
+
+def movie_details(request, id):
+    found_movie = models.Movie.objects.get(pk=id)
     return render(request, 'movie/movie_details.html', {
         'movie': found_movie
     })
