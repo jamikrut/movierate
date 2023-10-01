@@ -6,7 +6,16 @@
     <div class="uk-container uk-margin-large-top">
         <form class="uk-form-stacked" method="POST">
             {% csrf_token %}
-            {{ movie_form }}
+            {% for field in movie_form %}
+                <div class="uk-margin">
+                    <label class="uk-form-label">
+                        {{ field.label_tag }}
+                    </label>
+                </div>
+                <div class="uk-form-controls">
+                    {{ field }}
+                </div>
+            {% endfor %}
             <div class="uk-margin uk-text-right">
                 <button type="submit" class="uk-button-default uk-border-rounded">
                     Dodaj
