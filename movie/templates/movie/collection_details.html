@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block page_title %}
+    Collection Details
+{% endblock %}
+{% block page_content %}
+    <h1>{{ collection.name }}</h1>
+    <p>{{ collection.update_date }}</p>
+
+    {% if collection.movies %}
+        <table class="uk-table uk-table-divider">
+            <thead>
+            <tr>
+                <td>Tytuł</td>
+                <td>Opis</td>
+                <td>Liczba głosów</td>
+                <td>Średnia ocena</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for movie in collection.movies.all %}
+                <tr>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.overview }}</td>
+                    <td>{{ movie.statistics.vote_count }}</td>
+                    <td>{{ movie.statistics.vote_average }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Kolekcja nie posiada żadnych filmów</p>
+    {% endif %}
+{% endblock %}

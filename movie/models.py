@@ -1,6 +1,7 @@
 import csv
 
 from django.db import models
+from django.core.validators import MaxLengthValidator
 
 
 # Create your models here.
@@ -29,3 +30,25 @@ class Movie(models.Model):
 
     def __str__(self):
         return f'{self.title}, {self.release_date}'
+
+
+class User(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email_name = models.EmailField(max_length=100)
+
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
+    def __str__(self):
+        return self.full_name()
+
+
+class MovieCollection(models.Model):
+    name = models.CharField(max_length=255, validators=[
+        MaxLengthValidator(4)
+    ])
+    creation_date = models.DateField()
+    update_date = models.DateField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    movies = models.ManyToManyField(Movie)

@@ -8,13 +8,13 @@
         {{ movie.director }}
         {{ movie.overview }}
         {{ movie.release_date }}
-        {{ movie.vote_count }}
-        {% if movie.vote_average >= 7 %}
-            <span class="uk-text-success">{{ movie.vote_average|floatformat:1 }}</span>
+        {{ movie.statistics.vote_count }}
+        {% if movie.statistics.vote_average >= 7 %}
+            <span class="uk-text-success">{{ movie.statistics.vote_average|floatformat:1 }}</span>
         {% elif movie.vote_average > 4 %}
-            <span class="uk-text-warning">{{ movie.vote_average|floatformat:1 }}</span>
+            <span class="uk-text-warning">{{ movie.statistics.vote_average|floatformat:1 }}</span>
         {% else %}
-            <span class="uk-text-danger">{{ movie.vote_average|floatformat:1 }}</span>
+            <span class="uk-text-danger">{{ movie.statistics.vote_average|floatformat:1 }}</span>
         {% endif %}
     {% else %}
         <h1>Film nie został znaleziony</h1>
