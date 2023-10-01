@@ -31,6 +31,25 @@ class Movie(models.Model):
     def __str__(self):
         return f'{self.title}, {self.release_date}'
 
+    @staticmethod
+    def create_from_form(movie_data):
+        initial_statistics = MovieStatistics.objects.create(vote_count=0, vote_average=0)
+
+        Movie.objects.create(
+            tmdb_id=movie_data['tmdb_id'],
+            title=movie_data['title'],
+            cast=movie_data['cast'],
+            homepage=movie_data['homepage'],
+            director=movie_data['director'],
+            keywords=movie_data['keywords'],
+            overview=movie_data['overview'],
+            runtime_minutes=movie_data['runtime_minutes'],
+            genres=movie_data['genres'],
+            production_companies=movie_data['production_companies'],
+            release_date=movie_data['release_date'],
+            statistics=initial_statistics
+        )
+
 
 class User(models.Model):
     first_name = models.CharField(max_length=100)

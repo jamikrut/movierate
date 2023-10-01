@@ -4,7 +4,7 @@ from django.db.models import Count
 
 # Create your views here.
 from . import models
-from .forms import MovieForm
+from .forms import MovieForm, MovieFormTwo
 
 
 def selected_movie(request, title):
@@ -36,14 +36,19 @@ def movie_details(request, id):
 
 def add_movie(request):
     if request.method == 'POST':
-        print(request.POST.get('title'))
-        print(request.POST.get('cast'))
-        print(request.POST.get('date'))
-        print(request.body)
+        new_movie_data = MovieFormTwo(request.POST)
 
-        return redirect('all_movies')
+        if new_movie_data.is_valid():
+            # jeżeli formularz jest poprawny to dodajemy dane do bazy
+            movie_data = new_movie_data.cleaned_data
+            print(movie_data)
+            models.Movie.create_from_form(movie_data)
 
-    movie_form = MovieForm()
+            return redirect('all_movies')
+    else:
+        new_movie_data = MovieFormTwo()
+
+    movie_form = MovieFormTwo()
     return render(request, 'movie/add_movie.html', {
         'movie_form': movie_form
     })

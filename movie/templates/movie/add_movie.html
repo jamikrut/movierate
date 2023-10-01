@@ -15,6 +15,9 @@
                 <div class="uk-form-controls">
                     {{ field }}
                 </div>
+                <div class="uk-text-danger uk-margin-small-top">
+                    {{ field.errors }}
+                </div>
             {% endfor %}
             <div class="uk-margin uk-text-right">
                 <button type="submit" class="uk-button-default uk-border-rounded">
