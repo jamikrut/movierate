@@ -3,15 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block page_title %}{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'css/uikit.min.css' %}">
+    <meta charset="UTF-8">
+    <title> {% block page_title %} {% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/uikit-rtl.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/base_movie_styles.css' %}">
 
     <script src="{% static 'js/uikit.min.js' %}"></script>
     <script src="{% static 'js/uikit-icons.min.js' %}"></script>
-
 
 </head>
 <body>
@@ -22,10 +22,24 @@
             {% include 'nav_button.html' with url_name='all_collections' icon='list' name='Kolekcje' %}
         </div>
     </div>
-    <div class="uk-width-expand">
-        {% block page_content %}{% endblock %}
-    </div>
-</div>
 
+    <div class="uk-width-expand">
+        <nav class="uk-navbar-container" style="background: inherit">
+            <div class="uk-margin-medium-left" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="{% url 'add_movie' %}">
+                                Dodaj Film
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block page_content %} {% endblock %}
+    </div>
+
+</div>
 </body>
 </html>

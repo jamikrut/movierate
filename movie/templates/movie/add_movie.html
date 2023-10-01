@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block page_title %}
+    Add Movie
+{% endblock %}
+{% block page_content %}
+    <div class="uk-container uk-margin-large-top">
+        <form class="uk-form-stacked" method="POST">
+            {% csrf_token %}
+            {{ movie_form }}
+            <div class="uk-margin uk-text-right">
+                <button type="submit" class="uk-button-default uk-border-rounded">
+                    Dodaj
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
